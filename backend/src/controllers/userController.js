@@ -9,8 +9,10 @@ const getProfile = (req, res) => {
 // Actualizar perfil
 const updateProfile = async (req, res) => {
     try {
-        req.user.name = req.body.name || req.user.name;
+        req.user.username = req.body.username || req.user.username;
         req.user.email = req.body.email || req.user.email;
+        req.user.bio = req.body.bio || req.user.bio;
+        req.user.avatar = req.body.avatar || req.user.avatar;
 
         const updatedUser = await req.user.save();
         res.json(updatedUser);
