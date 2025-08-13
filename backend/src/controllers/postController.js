@@ -184,6 +184,20 @@ const deleteComment = async (req, res) => {
     }
 };
 
+const getMyPosts = async (req, res) => {
+    try {
+        const userId = req.user.id; // req.user viene del middleware JWT
+
+        const posts = await Post.find({ author: userId })
+            .sort({ createdAt: -1 }); // Orden descendente (últimos primero)
+
+        res.json(posts);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Error al obtener publicaciones" });
+    }
+};
+
 
 
 module.exports = {
@@ -194,5 +208,6 @@ module.exports = {
     editPost,
     deletePost,
     editComment,
-    deleteComment
+    deleteComment,
+    getMyPosts
 };
