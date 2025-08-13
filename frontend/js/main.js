@@ -25,44 +25,6 @@ showLogin.addEventListener("click", (e) => {
     showForm(loginContainer, registerContainer);
 });
 
-// Show Alert
-function showToast(message, type = "info") {
-    const icons = {
-        success: "✅",
-        error: "❌",
-        info: "ℹ️",
-        warning: "⚠️"
-    };
-
-    const container = document.getElementById("toastContainer");
-
-    // Crear toast
-    const toast = document.createElement("div");
-    toast.className = `toast ${type}`;
-
-    // Icono
-    const icon = document.createElement("span");
-    icon.className = "toast-icon";
-    icon.textContent = icons[type] || "ℹ️";
-
-    // Mensaje
-    const text = document.createElement("span");
-    text.textContent = message;
-
-    // Añadir al toast
-    toast.appendChild(icon);
-    toast.appendChild(text);
-
-    // Agregar al contenedor
-    container.appendChild(toast);
-
-    // Eliminar después de la animación
-    setTimeout(() => {
-        toast.remove();
-    }, 3500);
-}
-
-
 
 // LOGIN
 document.getElementById("loginForm").addEventListener("submit", async (e) => {
