@@ -1,43 +1,168 @@
-body {
-    font-family: Arial, sans-serif;
-    background: #f4f4f4;
+/* From Uiverse.io by HoseinParvaresh */
+* {
     margin: 0;
 }
 
+body {
+    background-color: #212121;
+}
+
+.parent {
+    padding: 10px;
+}
+
+
+::selection {
+    background-color: gray;
+}
+
 .container {
-    max-width: 400px;
-    margin: 40px auto;
-    padding: 20px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-h1 {
-    text-align: center;
+.form {
+    width: 400px;
+    height: max-content;
+    background-image: linear-gradient(to bottom, #424242, #212121);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 0.5rem;
 }
 
-.form-container {
-    background: white;
-    padding: 15px;
-    margin-top: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+.title {
+    color: blueviolet;
+    margin: 3rem 0;
+    font-size: 2rem;
 }
 
-input {
-    width: 100%;
-    padding: 10px;
-    margin: 8px 0;
-    box-sizing: border-box;
-}
-
-button {
-    background: #4CAF50;
-    color: white;
+.input {
+    margin: 0.5rem 0;
+    padding: 1rem 0.5rem;
+    width: 20rem;
+    background-color: inherit;
+    color: rgb(244, 179, 245);
     border: none;
-    padding: 10px;
-    width: 100%;
-    cursor: pointer;
+    outline: none;
+    border-bottom: 1px solid blueviolet;
+    transition: all 400ms;
 }
 
-button:hover {
-    background: #45a049;
+.input:hover {
+    background-color: #424242;
+    border: none;
+    border-radius: 0.5rem;
+}
+
+.btn {
+    color: white;
+    height: 3rem;
+    width: 20rem;
+    margin-top: 3rem;
+    background-color: blueviolet;
+    border-radius: 0.5rem;
+    border: none;
+    font-size: 1.2rem;
+    transition: all 400ms;
+    cursor: pointer;
+    box-shadow:
+        0 0 10px rgb(221, 85, 255),
+        0 0 10px rgb(221, 85, 255);
+}
+
+.btn:hover {
+    background-color: rgb(168, 75, 255);
+    box-shadow: none;
+}
+
+.info {
+    margin-top: 15px;
+    font-size: 15px;
+    color: rgb(165, 165, 165);
+}
+
+.info a {
+    text-decoration: none;
+    color: rgb(178, 97, 255);
+}
+
+.container {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    display: none;
+}
+
+.container.active {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* error styles */
+.toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-family: Arial, sans-serif;
+}
+
+.toast {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 250px;
+    padding: 14px 18px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    animation: slideIn 0.4s ease forwards, fadeOut 0.4s ease forwards 3.2s;
+}
+
+.toast-icon {
+    font-size: 18px;
+}
+
+.toast.success {
+    background: linear-gradient(135deg, #4CAF50, #2e7d32);
+}
+
+.toast.error {
+    background: linear-gradient(135deg, #f44336, #b71c1c);
+}
+
+.toast.info {
+    background: linear-gradient(135deg, #2196F3, #1565c0);
+}
+
+.toast.warning {
+    background: linear-gradient(135deg, #ff9800, #e65100);
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: translateX(100%);
+    }
 }
