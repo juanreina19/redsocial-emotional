@@ -26,7 +26,7 @@ const createPost = async (req, res) => {
 const getAllPosts = async (req, res) => {
     try {
         const posts = await Post.find()
-            .populate("author", "username mood")
+            .populate("author", "username mood avatar")
             .sort({ createdAt: -1 });
 
         res.json(posts);
@@ -198,6 +198,21 @@ const getMyPosts = async (req, res) => {
     }
 };
 
+const getPostById = async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id)
+            .populate("author", "username avatar")
+            .populate("comments.author", "username avatar"); // trae info del autor y comentarios
+
+        if (!post) {
+            return res.status(404).json({ message: "Publicación no encontrada" });
+        }
+
+        res.json(post);
+    } catch (error) {
+        res.status(500).json({ message: "Error al obtener la publicación" });
+    }
+};
 
 
 module.exports = {
@@ -209,5 +224,6 @@ module.exports = {
     deletePost,
     editComment,
     deleteComment,
-    getMyPosts
+    getMyPosts,
+    getPostById
 };
