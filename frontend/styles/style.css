@@ -354,7 +354,7 @@ textarea {
 
 #moodSelect:focus {
     border-color: #6c63ff;
-    box-shadow: 0 0 5px rgba(108, 99, 255, 0.5);
+    box-shadow: 0 0 5px rgba(151, 99, 255, 0.5);
 }
 
 #moodSelect option {
@@ -410,7 +410,7 @@ textarea {
 }
 
 .follow-btn {
-    background-color: #1da1f2;
+    background-color: blueviolet;
     color: white;
     border: none;
     border-radius: 20px;
@@ -421,5 +421,5 @@ textarea {
 }
 
 .follow-btn:hover {
-    background-color: #1481c3;
+    background-color: rgb(166, 73, 253);
 }
