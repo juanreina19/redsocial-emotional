@@ -1,0 +1,425 @@
+:root {
+    --box-shadow-happy: rgba(255, 255, 0, 0.4);
+    --box-shadow-rage: rgba(255, 0, 0, 0.6);
+    --border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: 'Cascadia Code', monospace;
+    background: radial-gradient(circle, rgb(42, 42, 42) 0%, rgb(28, 28, 28) 52%);
+    overflow-x: hidden;
+}
+
+/* GRID PRINCIPAL */
+.parent {
+    display: grid;
+    grid-template-columns: 15% 1fr 15%;
+    min-height: 100vh;
+}
+
+.feed {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 24px;
+    padding: 20px;
+}
+
+/* Columna izquierda */
+.leftSide {
+    grid-column: 1 / 2;
+    border-right: var(--border);
+}
+
+.leftSide .logo {
+    position: fixed;
+    top: 0;
+    left: 30px;
+    color: white;
+}
+
+/* HEADER y CONTENIDO central */
+
+.content {
+    display: flex;
+    flex-direction: column;
+    border-left: var(--border);
+    border-right: var(--border);
+    width: 100%;
+}
+
+.content .header {
+    position: sticky;
+    top: 0;
+    background: rgba(36, 36, 36, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 10;
+    padding: 15px;
+    border-bottom: var(--border);
+    border-right: var(--border);
+}
+
+/* Columna derecha sticky */
+.rightSide {
+    position: sticky;
+    top: 0;
+    align-self: start;
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+}
+
+.div4,
+.suggest,
+.div6 {
+    padding: 20px;
+    border-bottom: var(--border);
+    color: white;
+}
+
+/* SIDEBAR flotante */
+.sidebar {
+    position: fixed;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    background-color: rgba(95, 158, 160, 0.09);
+    border: var(--border);
+    border-radius: 20px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.35);
+    width: 50px;
+    transition: width 0.3s ease;
+    overflow: hidden;
+    z-index: 1000;
+    backdrop-filter: blur(12px);
+}
+
+.sidebar:hover {
+    width: 150px;
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.sidebar nav a {
+    display: flex;
+    gap: 8px;
+    text-decoration: none;
+    color: whitesmoke;
+    padding: 12px;
+    white-space: nowrap;
+}
+
+.sidebar nav a span {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar:hover nav a span {
+    opacity: 1;
+}
+
+.sidebar nav a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    width: 100%;
+}
+
+/* create post style */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#create-post,
+.create-post {
+    display: flex;
+    gap: 12px;
+    background: transparent;
+    padding: 12px;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    width: 60%;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.post-input-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+textarea {
+    background: transparent;
+    border: none;
+    resize: none;
+    outline: none;
+    color: white;
+    font-size: 15px;
+    font-family: inherit;
+}
+
+.post-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 8px;
+}
+
+.icons button {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: white;
+    margin-right: 8px;
+    transition: opacity 0.2s;
+}
+
+.icons button:hover {
+    opacity: 0.7;
+}
+
+.post-btn {
+    background: blueviolet;
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.post-btn:hover {
+    background: rgb(163, 65, 255);
+}
+
+
+
+/* Cabecera dentro de la card */
+.post-card {
+    position: relative;
+    width: 420px;
+    border-radius: 18px;
+    padding: 12px 16px;
+    background-color: #2e2e33;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: var(--border);
+    color: white;
+    z-index: 0;
+    box-shadow: 0 0 20px var(--box-shadow-happy);
+    margin: 6px;
+}
+
+
+/* Header pequeño estilo Instagram */
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+/* Avatar */
+.card-header img {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Nombre y tiempo */
+.card-header .info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.card-header .username {
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.card-header .time {
+    font-size: 11px;
+    opacity: 0.7;
+}
+
+/* Contenido */
+.card-content {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Footer minimal */
+.card-footer {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.card-footer button {
+    background: transparent;
+    border: none;
+    color: #d1d1d1;
+    cursor: pointer;
+    font-size: 15px;
+    transition: color 0.3s;
+}
+
+.card-footer button:hover {
+    color: white;
+}
+
+#like svg {
+    stroke: currentColor;
+    fill: none;
+}
+
+#like:focus svg {
+    stroke: red;
+    fill: red;
+}
+
+@media screen and (max-width: 768px) {
+    .parent {
+        grid-template-columns: 10% 1fr;
+    }
+}
+
+/* modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    color: white;
+    background: #2e2e33;
+    margin: 10% auto;
+    padding: 20px;
+    width: 400px;
+    border-radius: 10px;
+}
+
+.close {
+    float: right;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+#moodSelect {
+    background-color: #1e1e2f;
+    color: #ffffff;
+    border: 1px solid #3a3a4d;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+#moodSelect:hover {
+    background-color: #2b2b40;
+    border-color: #5a5a75;
+}
+
+#moodSelect:focus {
+    border-color: #6c63ff;
+    box-shadow: 0 0 5px rgba(108, 99, 255, 0.5);
+}
+
+#moodSelect option {
+    background-color: #1e1e2f;
+    color: #ffffff;
+}
+
+/* sugerencias */
+.suggest {
+    padding: 10px;
+    color: white;
+    font-family: sans-serif;
+}
+
+.suggest h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.suggestion-card {
+    display: flex;
+    align-items: center;
+    background-color: #252538;
+    border-radius: 8px;
+    padding: 8px;
+    margin-bottom: 8px;
+    transition: background-color 0.2s;
+}
+
+.suggestion-card:hover {
+    background-color: #2e2e4d;
+}
+
+.suggestion-card img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.suggestion-info {
+    flex: 1;
+}
+
+.suggestion-name {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.suggestion-username {
+    font-size: 12px;
+    color: #bbb;
+}
+
+.follow-btn {
+    background-color: #1da1f2;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 5px 12px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background-color 0.2s;
+}
+
+.follow-btn:hover {
+    background-color: #1481c3;
+}

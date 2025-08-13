@@ -1,0 +1,248 @@
+<style>
+    .profile-container {
+        margin: 0 auto;
+        max-width: 900px;
+        padding: 20px;
+        color: white;
+    }
+
+    .profile-header {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        border-bottom: 1px solid #555;
+    }
+
+    .profile-avatar {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .profile-info {
+        margin-left: 20px;
+    }
+
+    .profile-username {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .edit-btn {
+        padding: 5px 10px;
+        border-radius: 10px;
+        border: none;
+        background: blueviolet;
+        cursor: pointer;
+        color: whitesmoke;
+    }
+
+    .edit-btn:hover {
+        background-color: #3d3c41;
+    }
+
+    .profile-stats {
+        margin: 10px 0;
+        display: flex;
+        gap: 20px;
+        color: gray;
+    }
+
+    .posts-grid {
+        display: grid;
+        margin: 10px;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 5px;
+    }
+
+    .posts-grid img {
+        width: 100%;
+        height: auto;
+    }
+
+    #postCount,
+    #followersCount,
+    #followingCount {
+        color: white;
+    }
+
+    /* Fondo del modal */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+    }
+
+    /* Contenedor */
+    .modal-content {
+        color: white;
+        background: #38363a;
+        max-width: 400px;
+        width: 90%;
+        margin: 10% auto;
+        border-radius: 12px;
+        overflow: hidden;
+        animation: slideIn 0.25s ease;
+        position: relative;
+    }
+
+    /* Animación */
+    @keyframes slideIn {
+        from {
+            transform: translateY(-20px);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    /* Header */
+    .modal-header {
+        padding: 16px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        text-align: center;
+    }
+
+    .modal-header h2 {
+        font-size: 2rem;
+        font-weight: bold;
+        background: linear-gradient(to right, #007bff, #ff007b);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        -webkit-text-stroke: 1px transparent;
+    }
+
+    .close {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 20px;
+        cursor: pointer;
+        color: white;
+    }
+
+    /* Body */
+    .modal-body {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 16px;
+        align-items: center;
+    }
+
+    /* Avatar */
+    .avatar-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 12px;
+    }
+
+    .avatar-container img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid linear-gradient(140deg, blueviolet, blue);
+        margin-bottom: 8px;
+    }
+
+    /* Inputs */
+    .modal-body input,
+    .modal-body textarea {
+        width: 80%;
+        padding: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        outline: none;
+        font-size: 14px;
+    }
+
+    .modal-body input:focus,
+    .modal-body textarea:focus {
+        border-color: blueviolet;
+    }
+
+    /* Botón */
+    .save-btn {
+        background: blueviolet;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 8px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .save-btn:hover {
+        background: rgb(167, 72, 255);
+    }
+
+    /* Botón editar */
+    .edit-btn {
+        background: blueviolet;
+        color: white;
+        padding: 6px 12px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>
+
+
+<div class="profile-container">
+    <div class="profile-header">
+        <img id="profileAvatar" class="profile-avatar" src="https://www.w3schools.com/howto/img_avatar.png"
+            alt="avatar">
+        <div class="profile-info">
+            <div class="profile-username">
+                <h2 id="profileUsername">@usuario</h2>
+                <button id="editProfileBtn" class="edit-btn">Editar perfil</button>
+            </div>
+            <div class="profile-stats">
+                <span><strong id="postCount">0</strong> publicaciones</span>
+                <span><strong id="followersCount">0</strong> seguidores</span>
+                <span><strong id="followingCount">0</strong> siguiendo</span>
+            </div>
+            <p id="profileBio">Aquí irá la biografía del usuario</p>
+        </div>
+    </div>
+    <div id="userPosts" class="posts-grid"></div>
+</div>
+
+<!-- Modal -->
+<div id="editProfileModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+
+        <div class="modal-header">
+            <h2>Editar perfil</h2>
+        </div>
+
+        <form id="editProfileForm" class="modal-body">
+            <!-- Avatar -->
+            <div class="avatar-container">
+                <img id="editAvatarPreview" src="" alt="Avatar">
+                <input type="text" name="avatar" id="editAvatar" placeholder="URL de tu avatar">
+            </div>
+
+            <!-- Campos -->
+            <label>Nombre</label>
+            <input type="text" name="name" id="editName" placeholder="Tu nombre">
+
+            <label>Bio</label>
+            <textarea name="bio" id="editBio" rows="3" placeholder="Escribe algo sobre ti"></textarea>
+
+            <!-- Botón guardar -->
+            <button type="submit" class="save-btn">Guardar</button>
+        </form>
+    </div>
+</div>

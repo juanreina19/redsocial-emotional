@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Moodly | Auth</title>
+    <link rel="stylesheet" href="styles/auth.css" />
+    <link rel="stylesheet" href="styles/alerts.css">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <script src="js/alerts.js"></script>
+</head>
+
+<body>
+    <div class="parent">
+        <div class="logo">
+            <img src="img/icon.svg" alt="icon" draggable="false" height="100" width="100">
+        </div>
+
+        <!-- Login -->
+        <div class="container active" id="loginContainer">
+            <form id="loginForm" class="form">
+                <p class="title">Iniciar Sesión</p>
+                <input type="email" class="input" id="loginEmail" placeholder="Correo" required />
+                <input type="password" class="password input" id="loginPassword" placeholder="Contraseña" required />
+                <p class="info">No tienes cuenta? <a href="#" id="showRegister">Registrate</a></p>
+                <button type="submit" class="btn">Entrar</button>
+            </form>
+        </div>
+
+        <!-- Registro -->
+        <div class="container" id="registerContainer">
+            <form id="registerForm" class="form">
+                <p class="title">Registrate</p>
+                <input type="text" class="input" id="registerUsername" placeholder="Nombre de usuario" required />
+                <input type="email" class="input" id="registerEmail" placeholder="Correo" required />
+                <input type="password" class="input" id="registerPassword" placeholder="Contraseña" required />
+                <p class="info">Ya tienes cuenta? <a href="#" id="showLogin">Inicia Sesion</a></p>
+                <button type="submit" class="btn">Registrarse</button>
+            </form>
+        </div>
+        <script src="js/main.js"></script>
+</body>
+
+</html>
