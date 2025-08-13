@@ -9,32 +9,38 @@
 </head>
 
 <body>
-    <div class="container">
-        <h1>Mi Red Social</h1>
+    <div id="toastContainer" class="toast-container"></div>
+
+    <div class="parent">
+        <div class="logo">
+            <img src="img/icon.svg" alt="icon" draggable="false" height="100" width="100">
+        </div>
 
         <!-- Login -->
-        <div class="form-container">
-            <h2>Iniciar Sesión</h2>
-            <form id="loginForm">
-                <input type="email" id="loginEmail" placeholder="Correo" required />
-                <input type="password" id="loginPassword" placeholder="Contraseña" required />
-                <button type="submit">Entrar</button>
+        <div class="container active" id="loginContainer">
+            <form id="loginForm" class="form">
+                <p class="title">Iniciar Sesión</p>
+                <input type="email" class="input" id="loginEmail" placeholder="Correo" required />
+                <input type="password" class="password input" id="loginPassword" placeholder="Contraseña" required />
+                <p class="info">No tienes cuenta? <a href="#" id="showRegister">Registrate</a></p>
+                <button type="submit" class="btn">Entrar</button>
             </form>
         </div>
 
         <!-- Registro -->
-        <div class="form-container">
-            <h2>Registro</h2>
-            <form id="registerForm">
-                <input type="text" id="registerUsername" placeholder="Nombre de usuario" required />
-                <input type="email" id="registerEmail" placeholder="Correo" required />
-                <input type="password" id="registerPassword" placeholder="Contraseña" required />
-                <button type="submit">Registrarse</button>
+        <div class="container" id="registerContainer">
+            <form id="registerForm" class="form">
+                <p class="title">Registrate</p>
+                <input type="text" class="input" id="registerUsername" placeholder="Nombre de usuario" required />
+                <input type="email" class="input" id="registerEmail" placeholder="Correo" required />
+                <input type="password" class="input" id="registerPassword" placeholder="Contraseña" required />
+                <p class="info">Ya tienes cuenta? <a href="#" id="showLogin">Inicia Sesion</a></p>
+                <button type="submit" class="btn">Registrarse</button>
             </form>
         </div>
-    </div>
 
-    <script src="js/main.js"></script>
+
+        <script src="js/main.js"></script>
 </body>
 
 </html>
